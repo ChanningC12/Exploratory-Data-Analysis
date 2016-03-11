@@ -40,13 +40,20 @@ with(subset(pollution,region=="west"),plot(latitude,pm25,main="west"))
 
 # Additional Resources: R Graph; R Bloggers
 
+# Plotting systems in R
+# Base Plotting System: plot, text, line, points, label
+library(datasets)
+View(cars)
+with(cars,plot(speed,dist)) # scatter plot
 
+# The lattice system
+library(lattice)
+state = data.frame(state.x77,region=state.region)
+xyplot(Life.Exp~Income | region, data=state, layout=c(4,1))
 
-
-
-
-
-
+# The ggplot2
+library(ggplot2)
+qplot(displ,hwy,data=mpg)
 
 
 
