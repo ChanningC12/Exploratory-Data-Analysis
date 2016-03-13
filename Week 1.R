@@ -128,3 +128,11 @@ plot(x,y)
 plot(x,y,type="n")   # make the plot but no content
 points(x[g=="Male"],y[g=="Male"],col="green")
 points(x[g=="Female"],y[g=="Female"],col="blue")
+
+# Graphic Devices in R
+# Graphic Device: Something where you can make a plot appear
+# 1. Plot
+library(datasets)
+with(faithful,plot(eruptions,waiting))
+title(main="Old Faithful Geyser Data")
+
