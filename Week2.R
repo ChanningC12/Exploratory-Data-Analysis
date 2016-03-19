@@ -38,6 +38,31 @@ qplot(displ,hwy,data=mpg) # x coord, y coord, data frame
 qplot(displ,hwy,data=mpg,color=drv) # color by factor variables
 qplot(displ,hwy,data=mpg,geom=c("point","smooth")) # smooth, 95% CI of the trend line
 qplot(hwy,data=mpg,fill=drv) # histogram 
+# Facets
+qplot(displ,hwy,data=mpg,facets=.~drv) # facet, right side: column of the panel, left: row of matrix
+qplot(hwy,data=mpg,facets=drv~.,binwidth=2,color=drv)
+
+# read maccs
+maccs = readRDS(file = "Desktop/Github/Coursera/Exploratory Data Analysis/Exploratory Data Analysis/maacs_env.rds")
+load("~/Desktop/Github/Coursera/Exploratory Data Analysis/Exploratory Data Analysis/maacs.Rda")
+qplot(pm25,data=maccs)
+qplot(log(pm25),data=maccs) # fill=
+qplot(log(pm25),data=maccs,geom="density")
+qplot(log(pm25),log(no2),data=maccs,color="red")+geom_smooth(method="lm")
+qplot(log(pm25),log(eno),data=maacs,color=mopos)+geom_smooth(method="lm")
+
+# initial call to ggplot: g = ggplot(maacs,aes(logpm25,NocturnalSympt)) 
+# summary(g)
+# g+geom_point()+geom_smooth()+facet_grid(.~bmicat)
+g = ggplot(maacs,aes(log(pm25),log(eno)))
+g + geom_point() + geom_smooth(method="lm") + facet_grid(.~mopos)
+g + geom_point(color="steelblue",size=4,alpha=1/2)
+g + geom_point(aes(color=mopos),size=4,alpha=1/2) + labs(title="MAACS") + 
+    labs(x=expression("log"*PM[2.5]),y=expression("log"*EN)) + geom_smooth() + facet_grid(.~mopos) +
+    theme_bw(base_family = "Times")
+
+
+
 
 
 
