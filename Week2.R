@@ -30,6 +30,20 @@ xyplot(y~x|f,panel=function(x,y,...){
     panel.lmline(x,y,col=2)
 })
 
+# ggplot
+library(ggplot2)
+# plots are made of aesthetic (size,shape,colot) and geom (points,lines), statistics
+# factor variables, indicates subset of subsets, needs to be properly labeled
+qplot(displ,hwy,data=mpg) # x coord, y coord, data frame
+qplot(displ,hwy,data=mpg,color=drv) # color by factor variables
+qplot(displ,hwy,data=mpg,geom=c("point","smooth")) # smooth, 95% CI of the trend line
+qplot(hwy,data=mpg,fill=drv) # histogram 
+
+
+
+
+
+
 
 
 
