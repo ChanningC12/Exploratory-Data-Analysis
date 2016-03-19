@@ -61,6 +61,23 @@ g + geom_point(aes(color=mopos),size=4,alpha=1/2) + labs(title="MAACS") +
     labs(x=expression("log"*PM[2.5]),y=expression("log"*EN)) + geom_smooth() + facet_grid(.~mopos) +
     theme_bw(base_family = "Times")
 
+testdat = data.frame(x=1:100,y=rnorm(100))
+testdat[50,2] = 100 # outlier
+with(testdat,plot(x,y,type="l",ylim=c(-5,5)))
+
+g = ggplot(testdat,aes(x=x,y=y))
+g + geom_line()
+g + geom_line() + ylim(-5,5) # without outlier
+g + geom_line() + coord_cartesian(ylim=c(-5,5)) # with outlier
+
+
+
+
+
+
+
+
+
 
 
 
