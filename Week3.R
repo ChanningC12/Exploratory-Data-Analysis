@@ -10,4 +10,27 @@ X[1:2,"var2"] #subset both column and row
 
 # logical statement: and, or
 X[(X$var1<=3 & X$var3>11),]
+X[(X$var1<=3 | X$var3>15),]
+
+# Dealing with missing value
+X[which(X$var2>8),]
+# Sort
+sort(X$var1)
+sort(X$var1,decreasing = T)
+sort(X$var2,na.last = T)
+# Ordering
+X[order(X$var1),]
+# Ordering with plyr
+library(plyr)
+arrange(X,var2)
+arrange(X,desc(var1))
+
+# Adding rows and columns
+X$var4 = rnorm(5)
+X
+Y=cbind(X,rnorm(5))
+Y
+
+
+
 
