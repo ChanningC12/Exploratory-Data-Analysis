@@ -57,4 +57,16 @@ delay
 library(ggplot2)
 ggplot(delay,aes(dist,delay)) + geom_point(aes(size=count),alpha=0.5) + geom_smooth() + scale_size_area()
 
+# chaining
+a1 = group_by(flight,year,month,day)
+a2 = select(a1,arr_delay,dep_delay)
+a3 = summarise(a2,
+               arr = mean(arr_delay,na.rm=T),
+               dep = mean(dep_delay,na.rm=T))
+a4 = filter(a3,arr>30 | dep>30)
+
+filter(summarise(select(group_by(flight,year,month,day),arr_delay,dep_delay),
+                 arr = mean(arr_delay,na.rm=T),
+                 dep = mean(dep_delay,na.rm=T)),
+                 arr > 30 | dep > 30)
 
